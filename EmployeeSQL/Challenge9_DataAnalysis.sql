@@ -17,8 +17,7 @@ SELECT * FROM titles;
 --      and salary of each employee.
 SELECT e.emp_no, e.last_name, e.first_name, e.sex, s.salary
 FROM employees AS e
-INNER JOIN salaries AS s ON
-s.emp_no=e.emp_no;
+INNER JOIN salaries AS s ON s.emp_no=e.emp_no;
 
 
 -- Q2. List the first name, last name, and --
@@ -36,10 +35,8 @@ SELECT d.depart_no,
   e.last_name,
   e.first_name
 FROM employees as e
-INNER JOIN dept_manager as dm ON
-e.emp_no = dm.emp_no
-INNER JOIN departments as d ON
-dm.depart_no = d.depart_no;
+INNER JOIN dept_manager as dm ON e.emp_no = dm.emp_no
+INNER JOIN departments as d ON dm.depart_no = d.depart_no;
 
 
 -- Q4. List the department number for each employee along with that 
@@ -50,10 +47,8 @@ SELECT d.depart_no,
   e.first_name,
   d.dept_name
 FROM employees as e
-INNER JOIN dept_emp as de ON
-e.emp_no = de.emp_no
-INNER JOIN departments as d ON
-de.depart_no = d.depart_no;
+INNER JOIN dept_emp as de ON e.emp_no = de.emp_no
+INNER JOIN departments as d ON de.depart_no = d.depart_no;
 
 
 -- Q5. List the first name, last name, and sex of each employee whose first name 
@@ -62,12 +57,12 @@ SELECT first_name,
   last_name,
   sex
 FROM employees
-WHERE first_name LIKE 'Hercules' AND
-last_name LIKE 'B%';
+WHERE first_name = 'Hercules' AND  last_name LIKE 'B%';
 
 
 -- Q6. List each employee in the Sales department, including their employee number, 
 -      last name, and first name.
+-- Option 1: Using Sub-queries----
 SELECT first_name, last_name, sex
 FROM employees
 WHERE emp_no IN
@@ -83,6 +78,13 @@ WHERE emp_no IN
     )
 ;
 
+-- Option 2: Using INNER JOIN----
+SELECT e.first_name, e.last_name, e.sex
+FROM employees AS e
+INNER JOIN dept_emp AS de ON e.emp_no = de.emp_no
+INNER JOIN departments AS d ON de.depart_no = d.depart_no
+WHERE d.dept_name = 'Sales';
+
 
 -- Q7. List each employee in the Sales and Development departments, including 
 -      their employee number, last name, first name, and department name.
@@ -91,11 +93,9 @@ SELECT e.emp_no,
   e.first_name,
   d.dept_name 
 FROM employees as e
-INNER JOIN dept_manager as dm ON
-e.emp_no = dm.emp_no
-INNER JOIN departments as d ON
-dm.depart_no = d.depart_no
-WHERE dept_name LIKE 'Sales' OR dept_name LIKE 'Development';
+INNER JOIN dept_manager as dm ON e.emp_no = dm.emp_no
+INNER JOIN departments as d ON dm.depart_no = d.depart_no
+WHERE d.dept_name IN ('Sales', 'Development');
 
 
 -- Q8. List the frequency counts, in descending order, of all the employee 
