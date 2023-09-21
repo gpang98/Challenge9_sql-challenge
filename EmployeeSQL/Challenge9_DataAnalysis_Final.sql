@@ -1,4 +1,6 @@
 --- Checking the data loading
+SELECT * FROM titles;
+
 SELECT * FROM departments;
 
 SELECT * FROM dept_emp;
@@ -9,7 +11,6 @@ SELECT * FROM employees;
 
 SELECT * FROM salaries;
 
-SELECT * FROM titles;
 
 
 --- Data Analysis
@@ -19,36 +20,40 @@ SELECT e.emp_no, e.last_name, e.first_name, e.sex, s.salary
 FROM employees AS e
 INNER JOIN salaries AS s ON s.emp_no=e.emp_no;
 
-
--- Q2. List the first name, last name, and --
+-- Q2. List the first name, last name, and 
 --     hire date for the employees who were hired in 1986.
 SELECT first_name, last_name, hire_date
 FROM employees
 WHERE EXTRACT(YEAR FROM hire_date) = 1986;
 
+-- another option
+SELECT first_name, last_name, hire_date
+FROM employees
+WHERE TO_CHAR(hire_date, 'YYYY') = '1986';
+
 
 -- Q3. List the manager of each department along with their department number, 
 --     department name, employee number, last name, and first name.
-SELECT d.depart_no, 
+SELECT d.dept_no, 
   d.dept_name, 
   e.emp_no,
   e.last_name,
   e.first_name
 FROM employees as e
 INNER JOIN dept_manager as dm ON e.emp_no = dm.emp_no
-INNER JOIN departments as d ON dm.depart_no = d.depart_no;
+INNER JOIN departments as d ON dm.dept_no = d.dept_no;
 
 
 -- Q4. List the department number for each employee along with that 
 -      employee’s employee number, last name, first name, and department name.
-SELECT d.depart_no, 
+SELECT de.dept_no, 
   e.emp_no,
   e.last_name,
   e.first_name,
   d.dept_name
 FROM employees as e
 INNER JOIN dept_emp as de ON e.emp_no = de.emp_no
-INNER JOIN departments as d ON de.depart_no = d.depart_no;
+INNER JOIN departments as d ON de.dept_no = d.dept_no;
 
 
 -- Q5. List the first name, last name, and sex of each employee whose first name 
@@ -69,9 +74,9 @@ WHERE emp_no IN
   (
     SELECT emp_no
     FROM dept_emp
-    WHERE depart_no IN
+    WHERE dept_no IN
       (
-        SELECT depart_no
+        SELECT dept_no
         FROM departments
         WHERE dept_name = 'Sales'
       )
@@ -82,7 +87,7 @@ WHERE emp_no IN
 SELECT e.first_name, e.last_name, e.sex
 FROM employees AS e
 INNER JOIN dept_emp AS de ON e.emp_no = de.emp_no
-INNER JOIN departments AS d ON de.depart_no = d.depart_no
+INNER JOIN departments AS d ON de.dept_no = d.dept_no
 WHERE d.dept_name = 'Sales';
 
 
@@ -92,9 +97,9 @@ SELECT e.emp_no,
   e.last_name,
   e.first_name,
   d.dept_name 
-FROM employees as e
-INNER JOIN dept_manager as dm ON e.emp_no = dm.emp_no
-INNER JOIN departments as d ON dm.depart_no = d.depart_no
+FROM employees AS e
+INNER JOIN dept_emp AS de ON e.emp_no = de.emp_no
+INNER JOIN departments AS d ON de.dept_no = d.dept_no
 WHERE d.dept_name IN ('Sales', 'Development');
 
 
