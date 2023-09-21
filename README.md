@@ -29,32 +29,33 @@ The following was done to accomplish the required tasks:
 
 3. Data Analysis
    - The 8 questions were then answered using SQL query as given in attachment.
+
    Q1. List the employee number, last name, first name, sex, and salary of each employee.
-       -> Total of 300,024 employees are listed
+       - Total of 300,024 employees are listed
 
    Q2. List the first name, last name, and hire date for the employees who were hired in 1986.
-       -> Total of 36,150 employees were hired in 1986.
+       - Total of 36,150 employees were hired in 1986.
 
    Q3. List the manager of each department along with their department number, department name, 
        employee number, last name, and first name.
-       -> 24 managers are listed working for the various departments
+       - 24 managers are listed working for the various departments
 
    Q4. List the department number for each employee along with that employee’s employee number, 
        last name, first name, and department name.
-       -> Total of 331,603 employees are listed.  Some employees work for more than one department.
+       - Total of 331,603 employees are listed.  Some employees work for more than one department.
           This suggest that the dataset reflect where employees have worked in the past and currently working.
 
    Q5. List the first name, last name, and sex of each employee whose first name is Hercules and 
        whose last name begins with the letter B.
-       -> 20 employeees has Hercules as first_name and last_name starting with B
+       - 20 employeees has Hercules as first_name and last_name starting with B
 
    Q6. List each employee in the Sales department, including their employee number, last name, and first name.
-       -> 52,245 employees worked for Sales Department
+       - 52,245 employees worked for Sales Department
 
    Q7. List each employee in the Sales and Development departments, including their employee number, 
        last name, first name, and department name.
-       -> There are 137,952 total employees working in Sales and Development Department.
+       - There are 137,952 total employees working in Sales and Development Department.
 
    Q8. List the frequency counts, in descending order, of all the employee last names 
        (that is, how many employees share each last name).
-      -> There are 1638 total of different last_name with Baba being the most popular (226 times).
+      - There are 1638 total of different last_name with Baba being the most popular (226 times).
