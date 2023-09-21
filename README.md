@@ -1,6 +1,6 @@
 # Challenge9_sql-challenge
 
-The codes below are taken from lecture notes and ChatGPT.
+The codes used are taken from lecture notes and ChatGPT.
 
 The following was done to accomplish the required tasks:
 1. Data Modelling
