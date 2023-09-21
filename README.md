@@ -29,6 +29,7 @@ The following was done to accomplish the required tasks:
 
 3. Data Analysis
    - The 8 questions were then answered using SQL query as given in attachment.
+   - 
    Q1. List the employee number, last name, first name, sex, and salary of each employee.
        -> Total of 300,024 employees are listed
 
